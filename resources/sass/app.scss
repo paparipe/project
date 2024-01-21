@@ -1,0 +1,238 @@
+
+@import './variables';
+@import './functions';
+@import './classes';
+
+html {
+
+    body {
+
+        /////////////////////////////// GENERAL ///////////////////////////
+        * {
+            font-family: $font-family;
+            display: block;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: $font-size;
+            line-height: 1;
+            color: map-get($colors, white);
+            -webkit-text-size-adjust: 100%;
+        }
+
+        h1, h2, h3, h4, h5, h6, p {
+            margin-bottom: calc($pad/3);
+        }
+
+        h1, h2, h3 { font-weight: 600; }
+
+        h4, h5, h6 { font-weight: 500; }
+        
+        h1 { font-size: 1.6em; }
+        h2 { font-size: 1.5em; }
+        h3 { font-size: 1.4em; }
+        h4 { font-size: 1.3em; }
+        h5 { font-size: 1.2em; }
+        h6 { font-size: 1.1em; }
+
+        p {
+
+        }
+
+        a {
+            text-decoration: none;
+            @include transition();
+        }
+
+        section {
+            width: 100%;
+            @include repeatMargin(calc($pad*2));
+        }
+
+        /////////////////////////////// SECTIONS ///////////////////////////
+        
+        @include flex(row, flex-start, flex-start, nowrap);
+
+        @include scroll();
+
+        margin: 0;
+        position: relative;
+        max-width: calc(100vw + ($pad * 14));
+        overflow-x: hidden;
+
+        > * {
+            min-height: 100vh;
+        }
+
+        /////////////////////////////// LOGO ///////////////////////////
+        > .logo {
+
+            @include transition();
+            position: fixed;
+            min-height: 0;
+            width: calc($pad * 4);
+            height: calc($pad * 4);
+            font-size: 2em;
+            z-index: 9;
+
+            > i {
+                @include transition();
+                position: absolute;
+                opacity: 1;
+                left: $pad;
+                top: $pad;
+
+                &.toggle {
+                    cursor: pointer;
+                    opacity: 0;
+                    left: -50px;
+                }
+            }
+    
+            &:hover {
+                > i {
+                    opacity: 0;
+                    left: -50px;
+                    &.toggle {
+                        opacity: 1;
+                        left: $pad;
+                    }
+                }
+            }
+        }
+
+        /////////////////////////////// HEADER ///////////////////////////
+        
+        > .animate {
+            @include transition();
+            transform-origin: left;
+            height: 100%;
+            width: calc($pad * 4);
+            transform: scaleX(1);
+        }
+
+        > header {
+
+            @include flex();
+            @include transition();
+            
+            position: fixed;
+
+            @include transition();
+            transform-origin: left;
+            transform: scaleX(0);
+
+            width: calc($pad * 14);
+            height: 100%;
+
+            padding: calc($pad * 2);
+
+            > * {
+
+                @include repeatMargin();
+                @include transition();
+                opacity: 0;
+
+                /////////////////////////////// MAIN MENU ///////////////////////////
+                &#main_menu {
+
+                    @include flex(column);
+                    width: 100%;
+                    margin: calc($pad * 3) calc( 0px - ($pad / 1.5) ) 0;
+
+                    .item {
+
+                        @include transition();
+                        width: calc(100% + (($pad / 1.5) * 2));
+                        position: relative;
+
+                        > a {
+
+                            width: 100%;
+                            height: 100%;
+                            padding: calc($pad / 1.5);
+
+                            border-bottom: 1px solid map-get($colors, white);
+
+                            &[href]:hover {
+                                background-color: map-get($colors, dark_gray);
+                                text-decoration: underline; 
+                            }
+
+                        }
+
+                        
+                        // ICONS
+                        > i {
+
+                            @include transition();
+
+                            position: absolute;
+                            
+                            right: calc($pad / 1.5);
+                            top: calc($pad / 1.5);
+
+                            cursor: pointer;
+
+                            &.toggle:hover {
+                                rotate: 180deg;
+                            }
+
+                        }
+    
+
+                        // Hover/Active
+                        &.active > a {
+                            background-color: map-get($colors, dark_gray);
+                        }
+
+
+                        // SUB MENU
+                        > .menu {
+
+                            background-color: map-get($colors, gray);
+                            text-decoration: none;
+
+                            > .item {
+                                width: 100%;
+                            }
+                            
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        > div#main-content {
+            @include transition();
+            padding: calc($pad * 2);
+            flex: 1;
+            width: auto;
+        }
+        
+        /////////////////////////////// MENU OPEN ///////////////////////////
+        &.menu_open {
+
+            > .logo { transform: translate($pad, $pad); }
+
+            > .animate { transform: scaleX(3.5); }
+
+            > header {
+                transform: scaleX(1);
+                > * { opacity: 1; }
+            }
+
+            > div#main-content {
+                translate: calc(($pad*14) - ($pad*4)) 0;
+                padding-right: calc(($pad * 12));
+            }
+
+        }
+
+    }
+
+}

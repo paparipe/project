@@ -1,0 +1,55 @@
+
+/////////////////////////////// DISPLAY FLEX ///////////////////////////
+@mixin flex(
+    $direction: row,
+    $justify: flex-start,
+    $align: flex-start,
+    $wrap: nowrap,
+) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
+
+/////////////////////////////// REPEAT MARGIN ///////////////////////////
+@mixin repeatMargin($margin: $pad, $direction: bottom) {
+
+    margin-#{$direction}: $margin;
+
+    &:last-child { margin-#{$direction}: $margin; }
+
+}
+
+/////////////////////////////// TRANSITION ///////////////////////////
+@mixin transition($time: 0.2s, $type: all) {
+    -moz-transition: $time $type ease-in-out;
+    -webkit-transition: $time $type ease-in-out;
+    transition: $time $type ease-in-out;
+}
+
+/////////////////////////////// SCROLL ///////////////////////////
+@mixin scroll(
+    $direction: y,
+    $track-color: map-get($colors, black),
+    $thumb-color: map-get($colors, gray),
+    $hover-color: map-get($colors, white)
+) {
+
+    overflow-#{$direction}: auto;
+
+    &::-webkit-scrollbar { width: 10px; }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        border: 5px solid $track-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $thumb-color;
+        border-radius: 10px;
+        &:hover { background-color: $hover-color; }
+    }
+
+}

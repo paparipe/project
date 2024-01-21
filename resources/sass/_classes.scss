@@ -1,0 +1,58 @@
+
+/////////////////////////////// ICONS ///////////////////////////
+
+
+
+/////////////////////////////// BACKGROUNDS ///////////////////////////
+@each $name, $value in $colors {
+    .bg-#{$name} {
+        background-color: $value;
+    }
+}
+
+/////////////////////////////// MAIN LIST ///////////////////////////
+.main-list {
+    @include flex(row, flex-start, flex-start, wrap);
+    margin: 0 (-($pad));
+
+    > .main-item {
+        margin: 0 $pad calc($pad * 2);
+        flex-basis: calc(25% - ($pad * 2));
+    }
+}
+
+/////////////////////////////// MAIN ITEMS ///////////////////////////
+.main-item {
+
+    position: relative;
+
+    @include transition();
+    transform-origin: top left;
+
+    > * {
+        padding: $pad;
+        border: 1px solid map-get($colors, white);
+
+        &.extra {
+
+            width: 100%;
+            position: absolute;
+
+            @include transition();
+            transform: scale(0);
+            transform-origin: top;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        }
+
+    }
+
+    &:hover {
+        z-index: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transform: scale(1.2);
+        > .extra {
+            transform: scale(1);
+        }
+    }
+}

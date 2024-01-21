@@ -1,0 +1,32 @@
+
+/////////////////////////////// FONTS ///////////////////////////
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/regular.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+@import '@fortawesome/fontawesome-free/css/brands.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+$font-family: 'Roboto', sans-serif;
+$font-size: 0.96em;
+
+/////////////////////////////// WINDOW SIZES ///////////////////////////
+$window: (
+  large:  1400px,
+  med:    980px,
+  small:  767px,
+  tiny:   600px,
+);
+
+/////////////////////////////// SIZES //////////////////////////////
+$pad: 15px;
+
+/////////////////////////////// COLORS ///////////////////////////
+$colors: (
+  white: #e8e8e8,
+  gray: #373737,
+  dark_gray: #232121,
+  black: #000000,
+);
+
+
